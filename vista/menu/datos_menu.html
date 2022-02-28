@@ -1,0 +1,83 @@
+<!-- Sidebar -->
+<div id="sidebar">
+
+	<div class="sidebar-tabs">
+		<ul class="tabs-nav three-items">
+			<li><a href="#general" title=""><i class="icon-th-list"></i></a></li>
+			<li><a href="#menu_conv" title=""><i class="icon-bar-chart"></i></a></li>
+			<li><a href="#menu_gru" title=""><i class="icon-cogs"></i></a></li>
+		</ul>
+
+		<div id="general">
+			<!-- Main navigation -->
+			<ul class="navigation widget">
+				<li><a  onclick="mn_prin_mesas_lista()" href="javascript:void(0)" title="">
+						<i class="icon-sitemap"></i>Mesas</a>
+				</li>	
+                <li><a href="javascript:void(0)" title="" >
+						<i class="icon-tasks"></i>Cocina </a>
+				</li>
+                		
+			</ul>
+			<!-- /main navigation -->
+		</div>
+        
+		<div id="menu_conv" class="widget">                    
+			<!-- Main navigation -->
+			
+			<!-- /main navigation -->
+		</div>
+        
+		<div id="menu_gru" class="widget">                    
+			<!-- Main navigation -->
+            
+            
+            <ul class="navigation widget">
+				<li class="{ADMIN_ORM}"><a id="menu_left_orm" href="javascript:void(0)" title="">
+						<i class="icon-copy"></i>ORM Create</a></li>  
+                
+                     
+			</ul>
+            
+            
+		</div>
+        
+        
+        <script>
+            $('.popover-test3').popover({ placement: 'right',    html: 'true'   })
+        	.click(function(e) {   e.preventDefault()  });
+        </script>
+                
+
+	</div>
+</div>
+<!-- /sidebar -->
+
+<script>
+    $(".tip").tooltip();
+    
+    $('#menu_left_orm').click(function()
+    {   cargando('#content',1);
+        $.ajax(
+        {   url : 'controlador/control_orm.php',
+            data : {accion:'ORM_Template'},
+            success : function(respuesta)
+            {   $('#content').html(respuesta);  }
+        });
+    });
+    
+    
+    function mn_prin_mesas_lista()
+    {   loading(0,0);
+        $.ajax( {   url : 'controlador/control_mesas.php', data : {accion:'Listado'},
+            success : function(respuesta) {   $('#content').html(respuesta);  unloading();  }
+        });
+    }
+    
+    
+    
+    
+    
+    
+    
+</script>

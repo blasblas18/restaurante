@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>{titulo_pagina}</title>
+    <link rel="shortcut icon" href="img/favicon/Report.ico" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 8]><link href="css/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+    <link href='css/font-principal.css' rel='stylesheet' type='text/css' />
+
+    <script type="text/javascript" src="js/jquery/jquery-min_1.7.2.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-min_1.9.2.js"></script>
+    
+    <script type="text/javascript" src="js/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.categories.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.axislabels.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.flot.symbol.js"></script>
+    <script type="text/javascript" src="js/plugins/charts/jquery.sparkline.min.js"></script>
+    
+    <script type="text/javascript" src="js/plugins/ui/jquery.easytabs.min.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/prettify.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.bootbox.min.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.colorpicker.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.jgrowl.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.fullcalendar.min.js"></script>
+    <script type="text/javascript" src="js/plugins/ui/jquery.elfinder.js"></script>
+    
+    <script type="text/javascript" src="js/plugins/uploader/plupload.js"></script>
+    <script type="text/javascript" src="js/plugins/uploader/plupload.html4.js"></script>
+    <script type="text/javascript" src="js/plugins/uploader/plupload.html5.js"></script>
+    <script type="text/javascript" src="js/plugins/uploader/jquery.plupload.queue.js"></script>
+    
+    <script type="text/javascript" src="js/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.autosize.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.inputlimiter.min.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.inputmask.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.select2.min.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.listbox.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.validation.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.validationEngine-en.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.form.js"></script>
+    
+    <script type="text/javascript" src="js/plugins/tables/jquery.dataTables.min.js"></script>
+    
+    <script type="text/javascript" src="js/files/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="js/files/functions.js"></script>
+</head>
+
+<body>
+
+	<!-- Fixed top -->
+	<div id="top">
+		<div class="fixed">
+			<a href="javascript:location.reload()" title="" class="logo"><img src="img/logo.png" alt="" /></a>
+			<ul class="top-menu">
+				<li class="{ADMIN_CARGAR_DATOS} "><a id='menu_left_usuario' href='javascript:void(0)' title='Usuarios del Sistema' class="fullsetings"></a></li>
+				<li><a class="fullview"></a></li>
+				<li class="dropdown {USUARIO_CONECTADO_1}">
+					<a class="user-menu" data-toggle="dropdown"><img src="img/user.png" alt="" style="margin-top: -3px ;"/>
+                        <span>{USER_NICK}, {USER_PRIMERNOMBRE} <b class="caret"></b></span></a>
+					<ul class="dropdown-menu">
+						<!-- <li><a href="#" title=""><i class="icon-user"></i>Profile</a></li>
+						<li><a href="#" title=""><i class="icon-inbox"></i>Messages<span class="badge badge-info">9</span></a></li>
+						<li><a href="#" title=""><i class="icon-cog"></i>Settings</a></li> -->
+						<li><a href="logout.php" title=""><i class="icon-remove"></i>Salir</a></li>
+					</ul>
+				</li>
+                <li style="height: 16px; padding: 14px; " class="{USUARIO_CONECTADO_0}">
+                    <a  href="index.php?accion=login" class="" style="color: white;">Ingresar
+                    <i class="icon-arrow-right" style="color: white;"></i></a></li>
+			</ul>
+		</div>
+	</div>
+    <script>
+        
+        $('.showayuda').click(function(){
+    	    $("body").toggleClass("clean");
+    	    $('#sidebar').toggleClass("hide-sidebar mobile-sidebar");
+    	    $('#content').toggleClass("full-content");
+    	});
+    </script>
+	<!-- /fixed top -->
+
+	<!-- Content container -->
+	<div id="container">
+
+		{DATOS_MENU_PRINCIPAL}
+
+		<!-- Content -->
+		<div id="content">
+
+		    <!-- Content wrapper -->
+		    <div id="capaDash" class="wrapper">
+
+		    </div>
+		    <!-- /content wrapper -->
+
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /content container -->
+
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="copyrights"> Sistemas y Sistemas &copy; 2022.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+		<ul class="footer-links">
+			<!-- <li><a href="../Documentacion/" target="_blank" title="" class=""><i class="icon-screenshot"></i>Documentaci&oacute;n</a></li> -->
+            <li><a href="" title="" class="contacto_admin"><i class="icon-cogs"></i>Contact admin</a></li>
+		</ul>
+	</div>
+	<!-- /footer -->
+
+</body>
+</html>
+<script>
+    $('#btn_registro_nino').click(function()
+    {   cargando('#content',1);
+        $.ajax(
+        {   url : 'controlador/control_nino.php',
+            data : {accion:'Template'},
+            success : function(respuesta)
+            {   $('#content').html(respuesta); }
+        });
+    });
+    
+    $('#btn_iniciar_cred').click(function()
+    {   cargando('#content',1);
+        $.ajax(
+        {   url : 'controlador/control_nino_cred.php',
+            data : {accion:'Template'},
+            success : function(respuesta)
+            {   $('#content').html(respuesta); }
+        });
+    });
+    
+    
+    
+    {FOOTER_CONTACT}    
+    
+</script>

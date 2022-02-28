@@ -1,0 +1,84 @@
+<script>
+	function detalle_lista(idPedido)
+	{	$.ajax(
+		{	url : 'controlador/control_detalle.php',
+			data : "accion=Listado&idPedido="+idPedido,
+			success : function(respuesta)
+			{	$('#capa1').html(respuesta);	}
+		});
+	}
+</script>
+<br />
+<div class="widget row-fluid">
+<div class="span8 offset2">
+	<form id="form_detalle" class="form-horizontal" action="javascript:void(0)">
+	<fieldset>
+		{INPUT_ID}
+		<div class="navbar">
+			<div class="navbar-inner">
+				<h6><strong>Detalle{TITULO_FORMULARIO}</strong></h6>
+				<div class="nav pull-right">
+					<a href="#" class="dropdown-toggle navbar-icon" data-toggle="dropdown"><i class="icon-cog"></i></a>
+					<ul class="dropdown-menu pull-right">
+						<li><a onclick="detalle_lista('{VALUE_IDPEDIDO}')" href="javascript:void(0)">
+								<i class="icon-reorder"></i>Listar Niños</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="well row-fluid">
+			<div class="control-group">
+				<div class="sepH_a">
+					<label class="control-label span4">IDCOMIDA: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="idComida" id="idComida"  value="{VALUE_IDCOMIDA}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">CANTIDAD: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="cantidad" id="cantidad"  value="{VALUE_CANTIDAD}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">OBSERVACION: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="observacion" id="observacion"  value="{VALUE_OBSERVACION}" />
+				</div>
+
+			</div>
+
+			<div class="form-actions">
+				<button type="submit" class="btn btn-success pull-left sepV_a">Guardar</button>
+				<button type="reset" class="btn pull-left">Reset</button>
+
+				<button onclick="detalle_lista('{VALUE_IDPEDIDO}')" type="button" class="btn btn-danger pull-right">Cancelar</button>
+			</div>
+		</div>
+	</fieldset>
+	</form>
+	<!-- /form validation -->
+</div>
+</div>
+<script>
+	$(".styled").uniform({ radioClass: 'choice' });
+	$('.val_num').keyup(function () { this.value = this.value.replace(/[^0-9\.]/g,''); });
+	$("#form_detalle").validationEngine({
+		onValidationComplete: function(form, status){
+			if(status== true)
+			{	$.ajax({
+					url : 'controlador/control_detalle.php',
+					data : "accion=Guardar&tipoGuardar="+{TIPO_GUARDAR}+"&" + $("#form_detalle").serialize(),
+					success : function(resultado) {
+						$('#capa1').html('<br /><center><img src="img/elements/loaders/6.gif"/></center>');
+						$.ajax({
+							url : 'controlador/control_detalle.php',
+							data : "accion=Listado&idPedido="+{VALUE_IDPEDIDO},
+							success : function(resultado) {
+								$("#capa1").html(resultado);
+							},
+						});
+					},
+				});
+			}
+		}
+	});
+</script>

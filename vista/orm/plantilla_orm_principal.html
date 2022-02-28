@@ -1,0 +1,82 @@
+<script>
+</script>
+<br />
+<div class="widget row-fluid">
+<div class="span8 offset2">   
+    <form id="form_orm" class="form-horizontal" action="javascript:void(0)">        
+	<fieldset>
+        <div class="navbar">
+       	    <div class="navbar-inner">
+                <h6>Crear ORM</h6>
+            </div>
+        </div>
+        
+        <div class="well row-fluid">
+            <div class="control-group">
+	            <div class="sepV_c pull-left span5">
+                    <label class="control-label span4">Tabla: </label>
+                    <input type="text" class="span8" name="tabla" id="tabla" />
+                </div>                                    
+	            
+	            <div class=" pull-left span5">
+                    <label class="control-label span4">Clase: </label>
+                    <input type="text" class="span8" name="clase" id="clase" />
+                </div>	                           
+                           
+            </div>                
+
+            <div class="form-actions">
+                <button id="button_orm_clase" type="button" class="btn btn-success pull-left sepV_c">
+                    Clase</button>
+                <button id="button_orm_control" type="button" class="btn btn-success pull-left sepV_c">
+                    Control</button>	 
+                <button style="margin-left: 30px;" id="button_orm_formulario" type="button" class="btn btn-success pull-left sepV_c">
+                    Formulario</button>
+                <button id="button_orm_lista" type="button" class="btn btn-success pull-left sepV_c">
+                    Lista</button>
+            </div>
+        </div>        
+    </fieldset>
+    </form>
+	<!-- /form validation -->
+</div>
+</div>
+
+<div id="resultados">
+</div>
+<script>
+    $("#nombre").focus();    
+    
+    $('#button_orm_clase').click(function()
+    {   $.ajax(
+        {   url : 'controlador/control_orm.php',
+            data : "accion=ORM_clase&" + $("#form_orm").serialize(),	
+            success : function(respuesta)
+            {   $('#resultados').html(respuesta); }
+        });
+    });
+    $('#button_orm_control').click(function()
+    {   $.ajax(
+        {   url : 'controlador/control_orm.php',
+            data : "accion=ORM_control&" + $("#form_orm").serialize(),
+            success : function(respuesta)
+            {   $('#resultados').html(respuesta); }
+        });
+    });
+    $('#button_orm_formulario').click(function()
+    {   $.ajax(
+        {   url : 'controlador/control_orm.php',
+            data : "accion=ORM_formulario&" + $("#form_orm").serialize(),
+            success : function(respuesta)
+            {   $('#resultados').html(respuesta); }
+        });
+    });
+    $('#button_orm_lista').click(function()
+    {   $.ajax(
+        {   url : 'controlador/control_orm.php',
+            data : "accion=ORM_lista&" + $("#form_orm").serialize(),
+            success : function(respuesta)
+            {   $('#resultados').html(respuesta); }
+        });
+    });	   
+</script>

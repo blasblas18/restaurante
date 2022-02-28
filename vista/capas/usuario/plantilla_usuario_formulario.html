@@ -1,0 +1,151 @@
+<script>
+	function usuario_lista()
+	{	$.ajax(
+		{	url : 'controlador/control_usuario.php',
+			data : "accion=Listado",
+			success : function(respuesta)
+			{	$('#capa1').html(respuesta);	}
+		});
+	}
+</script>
+<br />
+<div class="widget row-fluid">
+<div class="span8 offset2">
+	<form id="form_usuario" class="form-horizontal" action="javascript:void(0)">
+	<fieldset>
+		{INPUT_ID}
+		<div class="navbar">
+			<div class="navbar-inner">
+				<h6><strong>Usuario{TITULO_FORMULARIO}</strong></h6>
+				<div class="nav pull-right">
+					<a href="#" class="dropdown-toggle navbar-icon" data-toggle="dropdown"><i class="icon-cog"></i></a>
+					<ul class="dropdown-menu pull-right">
+						<li><a onclick="usuario_lista()" href="javascript:void(0)">
+								<i class="icon-reorder"></i>Listar Niños</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="well row-fluid">
+			<div class="control-group">
+				<div class="sepH_a">
+					<label class="control-label span4">DNI: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="dni" id="dni"  value="{VALUE_DNI}" maxlength="8" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">PATERNO: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="paterno" id="paterno"  value="{VALUE_PATERNO}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">MATERNO: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="materno" id="materno"  value="{VALUE_MATERNO}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">NOMBRE: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="nombre" id="nombre"  value="{VALUE_NOMBRE}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">CLAVE: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="clave" id="clave"  value="{VALUE_CLAVE}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">CORREO: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="correo" id="correo"  value="{VALUE_CORREO}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">CELULAR: <span class="text-error">*</span></label>
+					<input type="text" class="span4" name="celular" id="celular"  value="{VALUE_CELULAR}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">IDTIPO: <span class="text-error">*</span></label>
+                    <select name="idTipo" id="idTipo" >
+                        {OPTIONS_TIPO}
+                    </select>
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">IDNIVEL: <span class="text-error">*</span></label>
+                    <select name="idNivel" id="idNivel" >
+                        {OPTIONS_NIVEL}
+                    </select>
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">IDACCESO: <span class="text-error">*</span></label>
+					<select name="idAcceso" id="idAcceso" >
+                        {OPTIONS_ACCESO}
+                    </select>
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4">IDPERMISO: <span class="text-error">*</span></label>
+					<select name="idPermiso" id="idPermiso" >
+                        {OPTIONS_PERMISO}
+                    </select>
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4"><strong>EE.SS.: </strong><span class="text-error">*</span></label>
+					<select name="cod_2000" id="cod_2000" >
+                        {OPTIONS_EESS}
+                    </select>
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4"><strong>Cargo: </strong><span class="text-error">*</span></label>
+					<input type="text" class="span4" name="cargo" id="cargo"  value="{VALUE_CARGO}" />
+				</div>
+
+				<div class="sepH_a">
+					<label class="control-label span4"><strong>Estado: </strong><span class="text-error">*</span></label>
+					<!-- <input type="text" class="span4" name="estado" id="estado"  value="{VALUE_ESTADO}" /> -->
+                    <input type="checkbox" name="estado" id="estado" value="1" {CHECK_ESTADO} />
+				</div>
+
+			</div>
+
+			<div class="form-actions">
+				<button type="submit" class="btn btn-success pull-left sepV_a">Guardar</button>
+				<button type="reset" class="btn pull-left">Reset</button>
+
+				<button onclick="usuario_lista()" type="button" class="btn btn-danger pull-right">Cancelar</button>
+			</div>
+		</div>
+	</fieldset>
+	</form>
+	<!-- /form validation -->
+</div>
+</div>
+<script>
+    $("#idTipo, #idNivel, #idAcceso, #idPermiso, #cod_2000").select2();
+	$(".styled").uniform({ radioClass: 'choice' });
+	$('.val_num').keyup(function () { this.value = this.value.replace(/[^0-9\.]/g,''); });
+	$("#form_usuario").validationEngine({
+		onValidationComplete: function(form, status){
+			if(status== true)
+			{	$.ajax({
+					url : 'controlador/control_usuario.php',
+					data : "accion=Guardar&" + $("#form_usuario").serialize(),
+					success : function(resultado) {
+						$('#capa1').html('<br /><center><img src="img/elements/loaders/6.gif"/></center>');
+						$.ajax({
+							url : 'controlador/control_usuario.php',
+							data : "accion=Listado",
+							success : function(resultado) {
+								$("#capa1").html(resultado);
+							},
+						});
+					},
+				});
+			}
+		}
+	});
+</script>

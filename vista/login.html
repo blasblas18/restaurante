@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>RESTAURANTE :: SISTEMA</title>
+    <link rel="shortcut icon" href="img/favicon/Report.ico" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 8]><link href="css/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 9]><link href="css/ie9.css" rel="stylesheet" type="text/css" /><![endif]-->
+    <link href='css/font-principal.css' rel='stylesheet' type='text/css' />
+
+    <script type="text/javascript" src="js/jquery/jquery-min_1.7.2.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-min_1.9.2.js"></script>
+
+    <script type="text/javascript" src="js/plugins/forms/jquery.uniform.min.js"></script>
+
+    <script type="text/javascript" src="js/plugins/ui/jquery.bootbox.min.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.validation.js"></script>
+    <script type="text/javascript" src="js/plugins/forms/jquery.validationEngine-en.js"></script>
+
+    <script type="text/javascript" src="js/files/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/files/login.js"></script>
+    <script>
+        function loading(name, overlay) {
+            if (name == '0') name = 'Cargando';
+            $('body').append('<div id="overlay"></div><div id="preloader">' + name + '..</div>');
+            if (overlay == 1) {
+                $('#overlay').css('opacity', 0.1).fadeIn(function () { $('#preloader').fadeIn(); });
+                return false;
+            }
+            $('#preloader').fadeIn();
+        }
+        function unloading() {
+            $('#preloader').fadeOut('fast', function () { $('#overlay').fadeOut(); });
+        }
+    </script>
+<style>
+    .fixedx { position: fixed; height: 48px; width: 100%; z-index: 1039; background-color: rgb(22, 7, 92); padding: 0 20px; border-bottom: 4px solid #1d8ed1; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+#top:after { content: ""; display: block; clear: both; }
+
+#footerx { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; background-color: rgb(22, 7, 92); height: 42px; width: 100%; padding: 0 20px; border-top: 4px solid #1d8ed1; position: absolute; bottom: 0; font-size: 11px; color: #fff; }
+.copyrights { display: block; float: left; padding: 9px 0; }
+.footer-links { float: right; border-left: 1px solid #464646; border-right: 1px solid #464646; }
+.footer-links li { float: left; border-right: 1px solid #252525; }
+.footer-links li a { display: block; white-space: nowrap; border-left: 1px solid #464646; border-right: 1px solid #464646; color: #fff; padding: 9px 14px 8px 14px; line-height: 21px;
+  -webkit-transition: all 0.2s ease-in-out; 
+     -moz-transition: all 0.2s ease-in-out;
+       -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+</style>
+
+</head>
+
+<body class="no-background">
+
+    <!-- Fixed top -->
+    <div id="top">
+        <div class="fixedx">
+            <center><br><span style="color:white;font-size:20px;"><b>SISTEMA DE GESTI&Oacute;N DE RESTAURANTE</b></span></center>
+            
+        </div>
+    </div>
+    <!-- /fixed top -->
+
+   
+
+    <div id="vererror"></div>
+    <!-- Login block -->
+    <div class="login">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <h6><i class="icon-user"></i>Identificate</h6>
+                <div class="nav pull-right">
+                    <a href="#" class="dropdown-toggle navbar-icon" data-toggle="dropdown"><i class="icon-ok"></i></a>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="well">
+            <form id="form_login" action="javascript:void(0)" class="row-fluid">
+                <div class="control-group">
+                    <label class="control-label">Usuario</label>
+                    <div class="controls">
+                        <input class="validate[required] span12" type="text" name="usuario" id="usuario"
+                            placeholder="Usuario o Nick" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Clave:</label>
+                    <div class="controls">
+                        <input class="validate[required] span12" type="password" name="clave" id="clave"
+                            placeholder="Su clave" />
+                    </div>
+                </div><br />
+                <!-- 
+                <div class="control-group">
+                    <div class="controls"><label class="checkbox inline"><input type="checkbox" name="checkbox1" class="styled" value="" checked="checked" />Recordar Clave?</label></div>
+                </div>  -->
+
+                <div class="login-btn" >
+                    <input type="submit" value="Ingresar" class="btn btn-info btn-block"style="background-color: rgb(51, 21, 182);" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /login block -->
+
+
+    <!-- Footer -->
+    <div id="footerx">
+        <center><div class=""> Sistema de Sistemas &copy; 2022.</div></center>
+        <!-- <ul class="footer-links">
+            <li><a href="../Documentacion/" target="_blank" title="" class=""><i
+                        class="icon-screenshot"></i>Documentaci&oacute;n</a></li>
+            <li><a href="" title="" class="contacto_admin"><i class="icon-cogs"></i>Contact admin</a></li>
+        </ul> -->
+    </div>
+    <!-- /footer -->
+
+    <script>
+        $("#form_login").validationEngine({
+            onValidationComplete: function (form, status) {
+                if (status == true) {
+                    loading(0, 0);
+                    $.ajax({
+                        url: 'controlador/control_login.php',
+                        data: $("#form_login").serialize(),
+                        success: function (resultado) {
+                            if (resultado == 1)
+                                window.location.replace('index.php');
+                            else
+                                alert("Usuario o Clave Incorrecta");
+                            $("#usuario").focus();
+                            unloading();
+                        },
+                    });
+
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+<script>
+    $("#usuario").focus();
+    $('a.contacto_admin').click(function (e) {
+        e.preventDefault();
+        var box = bootbox.alert('<strong>Sistema de Sistemas - Pucallpa</strong><br /><br />'
+            + 'Soporte: <strong>Sistema de Sistemas</strong><br />'
+            + 'Correo: <strong>info@sistemasperu.com</strong>'
+            + '<br /><br /><strong>Sistema de Sistemas S.R.L.</strong>');
+        setTimeout(function () {
+            box.modal('hide');
+        }, 4000);
+    });
+</script>
